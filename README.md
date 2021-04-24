@@ -1,4 +1,4 @@
-# TouchBistro Cypress Challenge
+# BrokerBay Cypress Challenge
 
 ## Overview
 
