@@ -23,11 +23,9 @@ jobs:
       - name: Install node dependencies
         run: npm install
           
-      - name: Run app
+      - name: Run e2e tests
         with:
           build: npm run build
-          start: npm start
+          start: npm run start
           wait-on: http://localhost:3030
-          
-      - name: Run E2E Tests
-        run: npm run runE2ETests
+          run: npm run runE2ETests
