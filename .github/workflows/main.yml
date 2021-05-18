@@ -11,15 +11,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-          
-      - uses: actions/cache@v1
-        name: Cache node modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock. ') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-            
+                
       - name: Install node dependencies
         run: npm install
           
@@ -28,4 +20,4 @@ jobs:
         with:
           start: npm start
           wait-on: http://localhost:3030
-          run: npx runE2ETests
+          run: npm run runE2ETests
