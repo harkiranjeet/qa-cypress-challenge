@@ -1,0 +1,33 @@
+name: End-to-end tests
+on: [push]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          
+      - uses: actions/cache@v1
+        name: Cache node modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock. ') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            
+      - name: Install node dependencies
+        run: npm install
+          
+      - name: Run app
+        with:
+          build: npm run build
+          start: npm start
+          wait-on: http://localhost:3030
+          
+      - name: Run E2E Tests
+        run: npm run runE2ETests
