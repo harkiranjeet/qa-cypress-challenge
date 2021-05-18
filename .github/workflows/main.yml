@@ -10,7 +10,7 @@ jobs:
 
       - uses: actions/setup-node@v1
         with:
-          node-version: 14
+          node-version: 12
           
       - uses: actions/cache@v1
         name: Cache node modules
@@ -26,6 +26,6 @@ jobs:
       - name: Run e2e tests
         uses: cypress-io/github-action@v1
         with:
-          start: npm run start
+          start: npm start
           wait-on: http://localhost:3030
-          run: npm run runE2ETests
+          run: npx runE2ETests
