@@ -7,7 +7,7 @@
     "test": "mocha",
     "start": "node server.js",
     "cypress:open": "cypress open",
-    "runE2ETests": "cypress run --browser chrome --headless"
+    "runE2ETests": "cypress run"
   },
   "author": "",
   "license": "ISC",
