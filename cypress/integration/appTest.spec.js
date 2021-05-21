@@ -1,5 +1,8 @@
 const { appPageObj } = require("../../page_objects/AppPage");
 
+//Possible improvements in the app:
+//Custom  attribute for html elements to make automation reliable (data-cy="")
+//App should not hang after calculating median for empty text field. User should be allowed to enter value again and submit enabled.
 describe('App Test: ', () => {
 
     beforeEach(() => {
@@ -97,8 +100,8 @@ describe('App Test: ', () => {
       appPageObj.getSubmitButton().click().wait('@apiCall').its('response.statusCode').should('eq', 404);
 
       //Verify spinner exists and user cannot give any new input
-      //TODO (Bug: Application should not hang at this point) 
-
+      
+      //TODO (Bug: Application should not hang at this point, user should be able to enter and submit a new value) 
       appPageObj.verifySpinnerForInputIsVisible();
 
       // Input new value and verify submit is still disabled and spinner blocks the application.
