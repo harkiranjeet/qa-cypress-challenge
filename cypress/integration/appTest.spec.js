@@ -7,8 +7,10 @@ describe('App Test: ', () => {
         cy.clearCookies();
     })
     
-    it('Verify UI elements', () => {
+    it('Verify UI elements exist when app loads', () => {
       appPageObj.getHeadingForForm().should('contain', 'Enter a number to get the median of primes:');
+      appPageObj.getInputField().should('be.visible');
+      appPageObj.getSubmitButton().should('be.visible');
     });
 
 
@@ -108,17 +110,32 @@ describe('App Test: ', () => {
     it('Verify the maximum input value', () => {
       cy.intercept('GET','/api/*').as('apiCall');
       
+      //Input maximum valid value
       appPageObj.getInputField().type("10000000");
       appPageObj.getSubmitButton().click().wait('@apiCall');
       appPageObj.getResultHeading()
                 .should('be.visible')
                 .and('contain.text', "The median is: [4751053]");
 
-      //Calculate for input value more than 10000000
+      //Input maximum valid value with 0's in decimals
+      appPageObj.getInputField().type("10000000.00000");
+      appPageObj.getSubmitButton().click().wait('@apiCall');
+      appPageObj.getResultHeading()
+                .should('be.visible')
+                .and('contain.text', "The median is: [4751053]");
+          
+
+      //Calculate for input values more than 10000000
       appPageObj.getInputField().type("10000001");
       appPageObj.getSubmitButton().click();
       cy.on('window:alert',(txt)=>{
         expect(txt).to.contains('Number exceeds limit');
-      })
+      });
+
+      appPageObj.getInputField().type("10000000.0001");
+      appPageObj.getSubmitButton().click();
+      cy.on('window:alert',(txt)=>{
+        expect(txt).to.contains('Number exceeds limit');
+      });
      });
   });
