@@ -5,12 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
         with:
           working-directory: .
+        uses: actions/checkout@v2
+        
       - uses: actions/setup-node@v2
         with:
-          working-directory: .
           node-version: 12
           
       - uses: actions/cache@v2
