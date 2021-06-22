@@ -6,10 +6,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          working-directory: .
       - uses: actions/setup-node@v2
         with:
+          working-directory: .
           node-version: 12
-
+          
       - uses: actions/cache@v2
         name: Cache node modules
         with:
@@ -24,6 +27,7 @@ jobs:
       - name: Run e2e tests
         uses: cypress-io/github-action@v2
         with:
+          working-directory: .
           start: npm start
           wait-on: http://localhost:3030
           run: npm run runE2ETests
