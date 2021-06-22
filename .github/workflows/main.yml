@@ -5,12 +5,13 @@ on: [push]
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    env:
-    GIT_CURL_VERBOSE: 1
-    GIT_TRACE: 1
+    
   
     steps:
       - name: Checkout
+        env:
+          GIT_CURL_VERBOSE: 1
+          GIT_TRACE: 1
         with:
           working-directory: .
         uses: actions/checkout@v2
