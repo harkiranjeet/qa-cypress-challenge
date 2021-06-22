@@ -37,6 +37,6 @@ jobs:
         with:
           working-directory: .
           start: npm start
-          wait-on: http://localhost:3030
+          wait-on: http://localhost:3000
           run: npm run runE2ETests
 
